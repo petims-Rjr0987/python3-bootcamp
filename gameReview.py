@@ -3,6 +3,7 @@ import random
 while True:
     number_secret =random.randint(1 , 10)
     print("guess the number")
+    attempts = 5
     while True:
           try:
             myChoice = int(input("Guess the number (1-10): "))
@@ -13,6 +14,10 @@ while True:
                 print("to low !")
             else :
                 print("to high")
+            attempts -=1
+            if attempts == 0:
+                print(f"you're lose the game right anwer is {number_secret}")
+                break
             
           except ValueError:
             print("it not whole number try again")

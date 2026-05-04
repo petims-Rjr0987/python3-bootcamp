@@ -1,5 +1,5 @@
 import random
-def créer_profile():
+def create_profile():
     while True:
         nameUser = input("your name? :")
         country = input("country ?: ")
@@ -12,7 +12,7 @@ def créer_profile():
                 age = int(input("your age ?:"))
                 if age < 18:
                     status ="You need to study more"
-                elif age>= 18 or age> 30:
+                elif  age> 30:
                     status ="Welcom to the strenght of the age"
                 else:
                     status ="you should can save the others in big problème not simple problème"
@@ -22,27 +22,36 @@ def créer_profile():
     print(f"Hello {nameUser} you are {age} years old next years you will be {age +1}")
     print(f"{status}")
     return nameUser
-def trier_number(): 
-        """Demande un intervalle et sépare pairs et impairs"""
-        print("--- Analyseur de nombres ---")
+def sort_numbers(): 
         while True:
-            try:
-                first = int(input("First interval :"))
-                end = int(input("end of interval"))
-                pairs =[]
-                impairs =[]
-                for num in range(first , end +1):
-                    if num %2 ==0:
-                        pairs.append(num)
-                    else:
-                        impairs.append(num)
-                print(f"pair : {pairs}")
-                print(f"impair : {impairs}")
-                break
-            except ValueError:
-                print("it not whole numbre try again")
-
-def calculatrice() :
+             """Demande un intervalle et sépare pairs et impairs"""
+             print("--- Analyseur de nombres ---")
+             while True:
+                    try:
+                        first = int(input("First interval :"))
+                        end = int(input("end of interval"))
+                        pairs =[]
+                        impairs =[]
+                        for num in range(first , end +1):
+                            if num %2 ==0:
+                                pairs.append(num)
+                            else:
+                                impairs.append(num)
+                        print(f"pair : {pairs}")
+                        print(f"impair : {impairs}")
+                        break
+                    except ValueError:
+                        print("it not whole numbre try again")
+             while True:
+                 trier_numberAnswer = input("Do you want do it again? yes/no :")
+                 if trier_numberAnswer == "yes":
+                     break
+                 elif trier_numberAnswer == "no":
+                     print("Beybey")
+                     exit()
+                 else:
+                    print("Invald answer try egain")   
+def calculator() :
     """Programm calculatrice"""
     print("Welcom to the calculatrice programm")
     while True:
@@ -50,25 +59,31 @@ def calculatrice() :
             a = float(input("First number :"))
             op = input("Operateur (+,/,*,-):")
             b = float(input("Second number :"))
+                
             if(op == "+"): print(f"resultat : {a + b}")
             elif(op == "-"): print(f"resultat : {a - b}")
             elif(op == "/"): print(f"resultat : {a / b}")
-            elif(op == "*"): print(f"resultat : {a * b}")
+            elif(op == "*"): print(f"resultat : {a*b}")
+            
+
             
             else:
                 print("Opération invalide.")
             answer = input("Do you want try again yes/no :")
-            if answer == "no" and answer != "yes":
+            if answer == "yes":
                 break
+            elif answer == "no":
+                exit()
         
         except ValueError:
             print("erreur de saisir")
 
 
-def game() :
+def guess_game() :
     while True:
         print("****welcom to the guess game******")
-        secret_numbre = random.randint(1, 10)    
+        secret_numbre = random.randint(1, 10)  
+        attempts = 5  
         while True:
             try:
                 myNumber = int(input("Guess one number between (1-10) :"))
@@ -76,9 +91,13 @@ def game() :
                     print("Imazing, You are win 🔥")
                     break
                 elif myNumber< secret_numbre:
-                    print("to low")
+                    print("too low")
                 else:
-                    print("to high")
+                    print("too high")
+                attempts -=1
+                if attempts == 0:
+                    print(f"You  lost the game right answer is {secret_numbre}")
+                    break
                 #<head>
                 
             except ValueError:
@@ -93,22 +112,30 @@ def game() :
             else:
                 print("invalid answer try egain")
 
-def main() :
-    nom = créer_profile()
-    while True:
-        choice = input(f"Hello {nom} What are you interested in (1 :calculatrice ,2 :myProfil,3: trier_number ,4: Quiter ,5 :game  :)")
-        if choice == "1":
-            calculatrice()
-        elif choice == "2":
-            créer_profile()
-        elif choice == "3":
-            trier_number()
-        elif choice == "5":
-            game()
-        elif choice == "4":
-            print("BeyBey")
-            return
-        else:
-            print("Choice invalid")
+def main():
+    name = create_profile()
 
+    while True:
+        print("\n==== MENU ====")
+        print("1. Calculator")
+        print("2. Profile")
+        print("3. Sort Numbers")
+        print("4. Game")
+        print("5. Quit")
+
+        choice = input("Choose: ")
+
+        if choice == "1":
+            calculator()
+        elif choice == "2":
+            create_profile()
+        elif choice == "3":
+            sort_numbers()
+        elif choice == "4":
+            guess_game()
+        elif choice == "5":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice")
 main()

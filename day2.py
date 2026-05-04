@@ -28,7 +28,7 @@ while True:
                                           print("to hignt")
                                         elif geuss<1:
                                           
-                                          print("to low")
+                                          print("to low\n p$ git branch -M main")
                                         
                                         else:
                                           print("🎉 Correct! You win!")

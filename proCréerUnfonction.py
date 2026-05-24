@@ -3,7 +3,7 @@ def create_profile():
     while True:
         nameUser = input("your name? :")
         country = input("country ?: ")
-        if len(nameUser) < 4 and len(country )<4:
+        if len(nameUser) < 4 or len(country )<4:
             print("name and country least 4 character try again")
         else :
             break
@@ -18,65 +18,69 @@ def create_profile():
                     status ="you should can save the others in big problème not simple problème"
                 break
             except ValueError:
-                print("its not whole number try again")
+                print("it's not whole number try again")
     print(f"Hello {nameUser} you are {age} years old next years you will be {age +1}")
     print(f"{status}")
     return nameUser
 def sort_numbers(): 
         while True:
-             """Demande un intervalle et sépare pairs et impairs"""
+             """Ank for interval and distinguish the odd and the even"""
              print("--- Analyseur de nombres ---")
              while True:
                     try:
                         first = int(input("First interval :"))
-                        end = int(input("end of interval"))
-                        pairs =[]
-                        impairs =[]
+                        end = int(input("end of interval:"))
+                        odd_number =[]
+                        even_number =[]
                         for num in range(first , end +1):
                             if num %2 ==0:
-                                pairs.append(num)
+                                even_number.append(num)
                             else:
-                                impairs.append(num)
-                        print(f"pair : {pairs}")
-                        print(f"impair : {impairs}")
+                                odd_number.append(num)
+                        print(f"Even_number : {even_number}")
+                        print(f"Odd_number : {odd_number}")
                         break
                     except ValueError:
-                        print("it not whole numbre try again")
+                        print("it's not a whole numbre try again")
              while True:
-                 trier_numberAnswer = input("Do you want do it again? yes/no :")
-                 if trier_numberAnswer == "yes":
-                     break
-                 elif trier_numberAnswer == "no":
-                     print("Beybey")
-                     exit()
+                 if ask_yes_or_not():
+                    break
                  else:
-                    print("Invald answer try egain")   
+                    return 
 def calculator() :
     """Programm calculatrice"""
     print("Welcom to the calculatrice programm")
     while True:
         try:
             a = float(input("First number :"))
-            op = input("Operateur (+,/,*,-):")
+            op = input("Operator (+,/,*,-):")
             b = float(input("Second number :"))
                 
             if(op == "+"): print(f"resultat : {a + b}")
             elif(op == "-"): print(f"resultat : {a - b}")
-            elif(op == "/"): print(f"resultat : {a / b}")
+            elif(op == "/"): 
+                while True:
+                    if b ==0:
+                        print("Dividing this number by zero is impossible.")
+                        break
+                    else:
+                        print(f"Resultat: {a/b}")
+                        break
             elif(op == "*"): print(f"resultat : {a*b}")
             
 
             
             else:
-                print("Opération invalide.")
-            answer = input("Do you want try again yes/no :")
-            if answer == "yes":
-                break
-            elif answer == "no":
-                exit()
+                print("Invalid operator.")
+            break
         
         except ValueError:
-            print("erreur de saisir")
+            print("input error")
+    while True:
+        if ask_yes_or_not():
+            break
+        else:
+            return
 
 
 def guess_game() :
@@ -88,7 +92,7 @@ def guess_game() :
             try:
                 myNumber = int(input("Guess one number between (1-10) :"))
                 if myNumber == secret_numbre:
-                    print("Imazing, You are win 🔥")
+                    print("Amazing, You win 🔥")
                     break
                 elif myNumber< secret_numbre:
                     print("too low")
@@ -101,17 +105,27 @@ def guess_game() :
                 #<head>
                 
             except ValueError:
-                print("it not whole number try again")
+                print("it's not whole number try again")
         while True:
-            aswerForAgain = input("Do you want to play again? yes/no: ").lower().strip()
-            if aswerForAgain == "yes":
-                break
-            elif aswerForAgain == "no":
-                print("Beybey see you next time")
-                exit()
+            if ask_yes_or_not():
+               break
             else:
-                print("invalid answer try egain")
-
+                return
+def ask_yes_or_not():
+    while True:
+        answer = input(
+        "Do you want to do it again?:\n"
+        "1 : yes\n"
+        "2 : no\n"
+        "answer:")
+        if answer == "1":
+            return True
+        elif answer == "2":
+            print("Bye bye")
+            return False
+        else:
+            print("Invalid answer try again")
+            
 def main():
     name = create_profile()
 
